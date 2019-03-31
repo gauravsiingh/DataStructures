@@ -1,4 +1,4 @@
-package com.gaurav.datastructures.others;
+package com.gaurav.datastructures.impl;
 
 import com.gaurav.datastructures.stack.LinkedStack;
 import com.gaurav.datastructures.stack.Stack;
@@ -11,11 +11,12 @@ public class ExpressionMacther {
 		String input2 = "((()(()){([()])}))";
 		String input3 = ")(()){([()])}";
 		String input4 = "({[])}";
-		String input5 = "(";
+		String input5 = "(()";
 
-		System.out.println("For -> " + input1 + " " + isMatched(input1));
+		/*System.out.println("For -> " + input1 + " " + isMatched(input1));
 
-		/*System.out.println("\n\n********************");
+		
+		System.out.println("\n\n********************");
 
 		System.out.println("For -> " + input2 + " " + isMatched(input2));
 
@@ -27,14 +28,15 @@ public class ExpressionMacther {
 
 		System.out.println("For -> " + input4 + " " + isMatched(input4));
 
-		System.out.println("\n\n********************");
+		System.out.println("\n\n********************");*/
 
-		System.out.println("For -> " + input5 + " " + isMatched(input5));*/
+		System.out.println("For -> " + input5 + " " + isExpressionMatched(input5));
+		 
 
 	}
 
 	/** Tests if delimiters in the given expression are properly matched. */
-	public static boolean isMatched(String expression) {
+	public static boolean isExpressionMatched(String expression) {
 		final String opening = "({["; // opening delimisiters
 		final String closing = ")}]"; // respective closing delimiters
 		Stack<Character> buffer = new LinkedStack<>();
@@ -64,6 +66,28 @@ public class ExpressionMacther {
 			}
 		}
 		return buffer.isEmpty(); // were all opening delimiters matched?
+	}
+
+	/** Tests if every opening tag has a matching closing tag in HTML string. */
+	public static boolean isHTMLMatched(String html) {
+		Stack<String> buffer = new LinkedStack<>();
+		int j = html.indexOf('<'); // find first ’<’ character (if any)
+		while (j != -1) {
+			int k = html.indexOf('>', j + 1); // find next ’>’ character
+			if (k == -1)
+				return false; // invalid tag
+			String tag = html.substring(j + 1, k); // strip away < >
+			if (!tag.startsWith("/")) // this is an opening tag
+				buffer.push(tag);
+			else { // this is a closing tag
+				if (buffer.isEmpty())
+					return false; // no tag to match
+				if (!tag.substring(1).equals(buffer.pop()))
+					return false; // mismatched tag
+			}
+			j = html.indexOf('<', k + 1); // find next ’<’ character (if any)
+		}
+		return buffer.isEmpty(); // were all opening tags matched?
 	}
 
 }

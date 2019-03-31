@@ -1,0 +1,42 @@
+package com.gaurav.datastructures.queue;
+
+import com.gaurav.datastructures.linkedLists.SinglyLinkedList;
+
+/** Realization of a FIFO queue as an adaptation of a SinglyLinkedList. */
+public class LinkedQueue<E> implements Queue<E> {
+	private SinglyLinkedList<E> list = new SinglyLinkedList<>(); // an empty list
+
+	public LinkedQueue() {
+	} // new queue relies on the initially empty list
+
+	public int size() {
+		return list.size();
+	}
+
+	public boolean isEmpty() {
+		return list.isEmpty();
+	}
+
+	public void enqueue(E element) {
+		list.addLast(element);
+	}
+
+	public E first() {
+		return list.first();
+	}
+
+	public E dequeue() {
+		return list.removeFirst();
+	}
+	
+	public static void main(String args[]) {
+		LinkedQueue<Integer> linkedQueue = new LinkedQueue<Integer>();
+		for(int i = 0 ; i < 10 ; i++) {
+			linkedQueue.enqueue(i);
+		}
+		
+		for(int i = 0 ; i < 10 ; i++) {
+			System.out.println(linkedQueue.dequeue());
+		}
+	}
+}

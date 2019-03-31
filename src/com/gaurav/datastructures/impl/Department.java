@@ -1,4 +1,4 @@
-package com.gaurav.datastructures.others;
+package com.gaurav.datastructures.impl;
 
 public class Department implements Cloneable{
 	private int id;
