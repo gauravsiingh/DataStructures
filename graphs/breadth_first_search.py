@@ -50,6 +50,9 @@ class GraphTraversal:
         for vertex in self.verticesInfo:
             vertex.printInfo()
             
+    def hasPath(self, vertex):
+        return self.verticesInfo[vertex].isMarked
+            
 graph = undirected_graph.Graph()
 traverseGraph = GraphTraversal(graph)
 traverseGraph.dfs(0)
@@ -61,3 +64,6 @@ traverseGraph.vertexInfo(0)
 
 print("All Info")
 traverseGraph.allVerticesInfo()  
+
+print ("Does have path to vertex 6")
+print(traverseGraph.hasPath(6))
