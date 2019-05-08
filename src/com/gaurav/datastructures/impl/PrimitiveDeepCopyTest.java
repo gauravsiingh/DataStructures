@@ -20,7 +20,7 @@ class Deep {
 	}
 }
 
-public class PriDeepCopy {
+public class PrimitiveDeepCopyTest {
 
 	public static void main(String[] args) {
 		int[] vals = { 3, 7, 9 }; // original array

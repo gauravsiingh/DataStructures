@@ -17,7 +17,7 @@ class Shallow {
 	}
 }
 
-public class PriShallowCopy {
+public class PrimitiveShallowCopyTest {
 
 	public static void main(String[] args) {
 		int[] vals = { 3, 7, 9 }; //original array
